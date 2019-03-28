@@ -21,12 +21,12 @@ view: opportunity {
   
   #TODO: This should refer to the database column that salespeople are measured against. This can be ACV, Amount, revenue etc
     dimension: amount_config {
-    sql: acv_2_0_c ;;
+    sql: amount ;;
     }
 
   #TODO: Amount name will be how the measures built with amount_config will appear in the label of the field. The display name.
     dimension: amount_display {
-    sql:  ACV ;;
+    sql:  Amount ;;
     hidden: yes
     }
     
