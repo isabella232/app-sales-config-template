@@ -12,14 +12,14 @@ include: "//app-sales/quota_core.view.lkml"
 view: quota_map {
   derived_table: {
     sql:
-    SELECT 'Zacherie Clausen' as name, 'Inside Sales 1' as ae_segment
-    UNION ALL
-    SELECT 'Tiffani Helstrom' as name, 'Inside Sales 2' as ae_segment
-    UNION ALL
-    SELECT 'Gwendolyn Maris' as name, 'Outside Sales 1' as ae_segment
-    UNION ALL
-    SELECT 'Reine Duckerin' as name, 'Outside Sales 2' as ae_segment
-      ;;
+      SELECT 'Zacherie Clausen' as name, 'Inside Sales 1' as ae_segment
+      UNION ALL
+      SELECT 'Tiffani Helstrom' as name, 'Inside Sales 2' as ae_segment
+      UNION ALL
+      SELECT 'Gwendolyn Maris' as name, 'Outside Sales 1' as ae_segment
+      UNION ALL
+      SELECT 'Reine Duckerin' as name, 'Outside Sales 2' as ae_segment
+    ;;
   }
 }
 
@@ -37,10 +37,13 @@ view: quota_numbers {
 view: quota {
   extends: [quota_core]
   derived_table: {
-    sql:  SELECT *
-          FROM ${quota_map.SQL_TABLE_NAME}
-          LEFT JOIN ${quota_numbers.SQL_TABLE_NAME} ON quota_map.ae_segment = quota_numbers.ae_seg ;;
+    sql:  
+      SELECT *
+      FROM ${quota_map.SQL_TABLE_NAME}
+      LEFT JOIN ${quota_numbers.SQL_TABLE_NAME} ON quota_map.ae_segment = quota_numbers.ae_seg
+    ;;
   }
+}
 
 
   ##########################################################################################################
