@@ -3,10 +3,10 @@ include: "//app-sales/quota_core.view.lkml"
 ############################################################################################################################
 ### This is one potential way to structure the quota table. Quota map is a mapping between usernames and ae_segments and ###
 ### quota_numbers is a mapping between ae_segments to quota_amounts. The quota view joins these two tables to create the ###
-### quota table that is ultimately joined into the model.                                                                ### 
+### quota table that is ultimately joined into the model.                                                                ###
 ###                       `                                                                                              ###
 ### The critical thing is having a quota view that has a row for every Sales Rep with a name/id for joining, ae_segment  ###
-### for grouping and a quota_number.                                                                                     ### 
+### for grouping and a quota_number.                                                                                     ###
 ############################################################################################################################
 
 view: quota_map {
@@ -37,13 +37,13 @@ view: quota_numbers {
 view: quota {
   extends: [quota_core]
   derived_table: {
-    sql:  
+    sql:
       SELECT *
       FROM ${quota_map.SQL_TABLE_NAME}
       LEFT JOIN ${quota_numbers.SQL_TABLE_NAME} ON quota_map.ae_segment = quota_numbers.ae_seg
     ;;
   }
-}
+
 
 
   ##########################################################################################################
@@ -90,8 +90,8 @@ view: quota {
 #              ;;
 #    hidden: yes
 #  }
-  
 
-  
-  
+
+
+
 }
