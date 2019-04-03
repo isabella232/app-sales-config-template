@@ -11,14 +11,15 @@ view: user_schema {
 view: user {
   extends: [user_core]
 
-# Identify the Sales reps using this dimension
+# TODO: Identify which Users are Sales reps using this dimension
   dimension: is_sales_rep {
     type: yesno
     sql: 1=1 ;;
 #     ${department} = 'Sales' AND ${title} IN ('Outside AE', 'AE', 'Inside AE', 'Account Executive', 'MM AE', 'Commercial AE');;
   }
 
-  # How longh does it take an AE to ramp # Used in Comparison Views, this will filter ramping AE's from rankings.
+  # Customize - How longh does it take an AE to ramp
+  # Used in Comparison Views, this will filter ramping AE's from rankings.
   dimension: is_ramped {
     type: yesno
     sql: ${months_age} > 3 ;;

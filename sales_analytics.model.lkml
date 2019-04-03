@@ -43,11 +43,6 @@ explore: account {
   fields: [EXTENDED*]
 }
 
-explore: historical_snapshot {
-  extends: [historical_snapshot_core]
-  fields: [EXTENDED*]
-}
-
 explore: opportunity_history_waterfall {
   extends: [opportunity_history_waterfall_core]
   fields: [EXTENDED*]
@@ -55,5 +50,10 @@ explore: opportunity_history_waterfall {
 
 explore: lead {
   extends: [lead_core]
+  fields: [EXTENDED*]
+}
+
+explore: contact {
+  extends: [contact_core]
   fields: [EXTENDED*]
 }

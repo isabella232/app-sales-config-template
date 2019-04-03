@@ -12,3 +12,8 @@ project_name: "app-sales-config"
 
 local_dependency: {project: "app-sales"}
 local_dependency: {project: "app-sales-adapter"}
+
+# remote_dependency: app-sales {
+#   url: "https://github.com/looker/app-sales/"
+#   ref: "69be85d220239d4fa91b26f562a39a097652805c"
+# }

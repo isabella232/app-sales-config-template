@@ -11,14 +11,14 @@ view: opportunity_schema {
 ## Override dimensions or measures here ##
 ##########################################
 view: opportunity {
- extends: [opportunity_core]
- 
+ extends: [opportunity_core, stage_customization]
+
   # TODO: Set your Salesforce domain (i.e. https:// _____________ .com )
     dimension: salesforce_domain_config {
     sql: looker.my.salesforce.com;;
     hidden: yes
     }
-  
+
   #TODO: This should refer to the database column that salespeople are measured against. This can be ACV, Amount, revenue etc
     dimension: amount_config {
     sql: amount ;;
@@ -29,14 +29,14 @@ view: opportunity {
     sql:  Amount ;;
     hidden: yes
     }
-    
+
   #TODO: is_pipeline will determine in which stages an opportunity is considered pipeline
     dimension: is_pipeline {
     type: yesno
     sql: ${forecast_category} in ('Pipeline','Upside','BestCase') AND ${stage_name} <> 'Closed Lost' ;;
     group_label: "Status"
     }
-    
+
   #TODO: is_included_in_quota will determine which opportunites count towards quota calculations.
     dimension: is_included_in_quota {
     type: yesno
@@ -57,44 +57,16 @@ view: opportunity {
     sql: ${type} IN ('Existing Business','Renewal','Addon/Upsell') ;;
     group_label: "Status"
   }
-  
-  #TODO: custom stage name field will determine what order your stages should be in.
-  dimension: custom_stage_name {
-    label: "Stage Name"
-    case: {
-      when: {
-        sql: ${stage_name} = 'Stage 1' ;;
-        label: "Stage 1"
-      }
-      when: {
-        sql: ${stage_name} = 'Stage 2' ;;
-        label: "Stage 2"
-      }
-      when: {
-        sql: ${stage_name} = 'Stage 3' ;;
-        label: "Stage 3"
-      }
-      when: {
-        sql: ${stage_name} = 'Stage 4' ;;
-        label: "Stage 4"
-      }
-      when: {
-        sql: ${stage_name} = 'Stage 5' ;;
-        label: "Stage 5"
-      }
-      when: {
-        sql: ${stage_name} = 'Stage 6' ;;
-        label: "Stage 6"
-      }
-      when: {
-        sql: ${stage_name} = 'Stage 7' ;;
-        label: "Closed Won"
-      }
-      else: "Unknown"
-    }
+
+  # TODO: Define what it means for an opportunity to require follow up action
+  #       (This example is a filter for opps in stage 1 that have a meeting date in the past)
+  dimension: requires_action {
+    type: yesno
+    sql: ${first_meeting_raw} < CURRENT_TIMESTAMP() AND ${stage_name} = 'Validate' ;;
+    group_label: "Status"
   }
-  
-    # TODO - Optional: This field tiers the sizes of your deal. This is the default, uncomment and adjust for configuration. 
+
+    # TODO - Optional: This field tiers the sizes of your deal. This is the default, uncomment and adjust for configuration.
 #   dimension: deal_size_tier {
 #     type: string
 #     case: {
@@ -126,3 +98,41 @@ view: opportunity {
 #     }
 #   }
    }
+# TODO: Define your stage names below (make sure that no spaces lie between the last char of your stage names and the double semi-colon in the sql parameters)
+view: stage_customization {
+
+  dimension: stage_1 {
+    type: string
+    sql: Validate;;
+  }
+
+  dimension: stage_2 {
+    type: string
+    sql: Qualify;;
+  }
+
+  dimension: stage_3 {
+    type: string
+    sql: Develop;;
+  }
+
+  dimension: stage_4 {
+    type: string
+    sql: Develop Positive;;
+  }
+
+  dimension: stage_5 {
+    type: string
+    sql: Negotiate;;
+  }
+
+  dimension: stage_6 {
+    type: string
+    sql: Sales Submitted;;
+  }
+
+  dimension: stage_7 {
+    type: string
+    sql: Closed Won;;
+  }
+}
