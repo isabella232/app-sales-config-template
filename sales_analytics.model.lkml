@@ -54,7 +54,7 @@ explore: lead {
   fields: [EXTENDED*]
 }
 
-explore: opportunity_history_by_day {
-  extends: [opportunity_history_by_day_core]
+explore: contact {
+  extends: [contact_core]
   fields: [EXTENDED*]
 }
