@@ -17,18 +17,22 @@ datagroup: sales_analytics_etl {
 }
 
 
-## TODO - Optional - Set fiscal month offset to how many months after January to start the fiscal year.
+## CUSTOMIZE - Set fiscal month offset to how many months after January to start the fiscal year.
 # fiscal_month_offset: 0
 
-# named_value_format: custom_amount_value_format {
-#   value_format: "[>=1000000]$0.0,,\"M\";[>=1000]$0,\"K\";$0.00"
-# }
+named_value_format: custom_amount_value_format {
+  value_format: "[>=1000000]$0.0,,\"M\";[>=1000]$0,\"K\";$0.00"
+}
 
 
 
 #########################
 #### Explore Extends ####
 #########################
+
+### This Section is where you can add joins to custom views, or to exclude fields from Explores.
+### There are examples on how here: https://github.com/looker/app-sales-config-templates/blob/master/sales_analytics_explore_extends
+
 explore: opportunity {
   extends: [opportunity_core]
   fields: [EXTENDED*]
@@ -51,10 +55,5 @@ explore: opportunity_history_waterfall {
 
 explore: lead {
   extends: [lead_core]
-  fields: [EXTENDED*]
-}
-
-explore: opportunity_history_by_day {
-  extends: [opportunity_history_by_day_core]
   fields: [EXTENDED*]
 }
