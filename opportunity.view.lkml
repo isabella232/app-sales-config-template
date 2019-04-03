@@ -13,7 +13,7 @@ view: opportunity_schema {
 view: opportunity {
  extends: [opportunity_core, stage_customization]
 
-  # TODO: Set your Salesforce domain (i.e. https:// _____________ .com )
+  # TODO: Set your Salesforce domain (i.e. https:// _____________ .com ) This will be used to link out to SFDC objects.
     dimension: salesforce_domain_config {
     sql: looker.my.salesforce.com;;
     hidden: yes
@@ -98,6 +98,7 @@ view: opportunity {
 #     }
 #   }
    }
+
 # TODO: Define your stage names below (make sure that no spaces lie between the last char of your stage names and the double semi-colon in the sql parameters)
 view: stage_customization {
 
