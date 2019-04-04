@@ -31,7 +31,8 @@ named_value_format: custom_amount_value_format {
 #########################
 
 ### This Section is where you can add joins to custom views, or to exclude fields from Explores.
-### There are examples on how here: https://github.com/looker/app-sales-config-templates/blob/master/sales_analytics_explore_extends
+### This is useful for adding joins to additional custom derived tables and customizing which fields appear in the Explores.
+### There are a few examples here: https://github.com/looker/app-sales-config-templates/blob/master/sales_analytics_explore_extends
 
 explore: opportunity {
   extends: [opportunity_core]

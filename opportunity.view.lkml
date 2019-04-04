@@ -37,7 +37,7 @@ view: opportunity {
     group_label: "Status"
     }
 
-  #TODO: is_included_in_quota will determine which opportunites count towards quota calculations.
+  #TODO: is_included_in_quota will determine which opportunities count towards quota calculations.
     dimension: is_included_in_quota {
     type: yesno
     sql: ${type} IN ('New Business','New Customer','Marketplace','Amendment','Resell','Addon/Upsell') ;;
@@ -59,14 +59,15 @@ view: opportunity {
   }
 
   # TODO: Define what it means for an opportunity to require follow up action
-  #       (This example is a filter for opps in stage 1 that have a meeting date in the past)
+  #       (This example is a filter for opps in stage 1 that have a meeting date in the past, meaning a Rep should
+  #       move to the next stage or Closed Lost)
   dimension: requires_action {
     type: yesno
     sql: ${first_meeting_raw} < CURRENT_TIMESTAMP() AND ${stage_name} = 'Validate' ;;
     group_label: "Status"
   }
 
-    # TODO - Optional: This field tiers the sizes of your deal. This is the default, uncomment and adjust for configuration.
+    # Customize: This field tiers the sizes of your deal. This is the default, uncomment and adjust for configuration.
 #   dimension: deal_size_tier {
 #     type: string
 #     case: {
@@ -99,41 +100,43 @@ view: opportunity {
 #   }
    }
 
-# TODO: Define your stage names below (make sure that no spaces lie between the last char of your stage names and the double semi-colon in the sql parameters)
+# TODO: Define your stage names below (make sure that no spaces lie between the last char of your stage names and
+#       the double semi-colon in the sql parameters)
+
 view: stage_customization {
 
   dimension: stage_1 {
     type: string
-    sql: Validate;;
+    sql:Validate;;
   }
 
   dimension: stage_2 {
     type: string
-    sql: Qualify;;
+    sql:Qualify;;
   }
 
   dimension: stage_3 {
     type: string
-    sql: Develop;;
+    sql:Develop;;
   }
 
   dimension: stage_4 {
     type: string
-    sql: Develop Positive;;
+    sql:Develop Positive;;
   }
 
   dimension: stage_5 {
     type: string
-    sql: Negotiate;;
+    sql:Negotiate;;
   }
 
   dimension: stage_6 {
     type: string
-    sql: Sales Submitted;;
+    sql:Sales Submitted;;
   }
 
   dimension: stage_7 {
     type: string
-    sql: Closed Won;;
+    sql:Closed Won;;
   }
 }
