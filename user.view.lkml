@@ -11,18 +11,19 @@ view: user_schema {
 view: user {
   extends: [user_core]
 
-# TODO: Identify which Users are Sales reps using this dimension
+# TODO: Identify which Users are Sales reps using this dimension.
+#     i.e.  ${department} = 'Sales' AND ${title} IN ('Outside AE', 'AE', 'Inside AE', 'Account Executive', 'MM AE', 'Commercial AE');;
   dimension: is_sales_rep {
     type: yesno
     sql: 1=1 ;;
-#     ${department} = 'Sales' AND ${title} IN ('Outside AE', 'AE', 'Inside AE', 'Account Executive', 'MM AE', 'Commercial AE');;
   }
 
   # Customize - How longh does it take an AE to ramp
   # Used in Comparison Views, this will filter ramping AE's from rankings.
+  # e.g. ${months_age} > 3 ;;
   dimension: is_ramped {
     type: yesno
-    sql: ${months_age} > 3 ;;
+    sql: 1=1 ;;
   }
 
   # TODO: Set your Salesforce domain (i.e. https:// _____________ .com )

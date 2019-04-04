@@ -11,7 +11,7 @@ view: lead_schema {
 view: lead {
   extends: [lead_core]
 
-  # TODO: Set your Salesforce domain (i.e. https:// _____________ .com )
+  # Customize: Set your Salesforce domain (i.e. https:// _____________ .com )
   dimension: salesforce_domain_config {
     sql: looker.my.salesforce.com;;
   }

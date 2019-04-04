@@ -11,14 +11,14 @@ view: task_schema {
 view: task {
   extends: [task_core]
 
-  # TODO: Set your Salesforce domain (i.e. https:// _____________ .com )
+  # Customize: Set your Salesforce domain (i.e. https:// _____________ .com )
   dimension: salesforce_domain_config {
     sql: looker.my.salesforce.com;;
   }
 
-  # TODO: Define which task types are equivalent to a meeting with prospects
+  # TODO: Define which tasks represent a meeting with prospects
   dimension: is_meeting {
     type: yesno
-    sql: ${type} = 'Call' OR ${type} LIKE '%Meeting%' ;;
+    sql: ${type} LIKE '%Meeting%' ;;
   }
 }

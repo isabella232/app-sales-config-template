@@ -1,12 +1,15 @@
 include: "//app-sales/quota_core.view.lkml"
 
 ############################################################################################################################
-### This is one potential way to structure the quota table. Quota map is a mapping between usernames and ae_segments and ###
-### quota_numbers is a mapping between ae_segments to quota_amounts. The quota view joins these two tables to create the ###
-### quota table that is ultimately joined into the model.                                                                ###
-###                       `                                                                                              ###
-### The critical thing is having a quota view that has a row for every Sales Rep with a name/id for joining, ae_segment  ###
-### for grouping and a quota_number.                                                                                     ###
+### TODO: Set up the Quotas view.  There are several ways to set up the quota view. The important thing is that Looker   ###
+###       can find a view called quota that has a row for every Sales Rep with a name for joining, ae_segment            ###
+###       for grouping, a yearly quota_number for each user and the aggregate quota dimension.                           ###
+############################################################################################################################
+
+############################################################################################################################
+### Below is one potential way to structure the quota table. Quota map is a mapping between usernames and ae_segments    ###
+### and quota_numbers is a mapping between ae_segments to quota_amounts. The quota view joins these two tables to create ###
+###  the quota table that is ultimately joined into the model.                                                           ###
 ############################################################################################################################
 
 view: quota_map {
@@ -60,7 +63,7 @@ view: quota {
 
 
 
-  ##TODO: optional - This field corrects for users that were created as SFDC users before they were Sales Reps.
+  ## Customize - This field corrects for users that were created as SFDC users before they were Sales Reps.
   ## This is used for comparing the reps first 18 months against each other.
   ## This number should be set as the number of months they were in their previous role.
   ## e.g. Billy Kane was an SDR for 13 months before they were a Sales Rep.
@@ -80,7 +83,7 @@ view: quota {
 #    hidden: yes
 #  }
 
-  ## TODO: optional - this field groups similar ae_segments together for  the purpose of comparison.
+  ## Customize - this field groups similar ae_segments together for  the purpose of comparison.
   ## e.g. if a company had ae_segments like Inside 1 and Inside 2 with different quotas, we can group them together with this field.
   ## Can be ignored if ae_segment doesn't need to be grouped.
 #  dimension: segment_grouping {

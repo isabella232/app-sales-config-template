@@ -1,7 +1,7 @@
 include: "//app-sales/opportunity_core.view.lkml"
 include: "//app-sales-adapter/opportunity_adapter.view.lkml"
 
-# TODO: Change the schema or table name.
+# Customize: Change the schema or table name.
 view: opportunity_schema {
   sql_table_name: salesforce.opportunity ;;
   extension: required
@@ -13,7 +13,7 @@ view: opportunity_schema {
 view: opportunity {
  extends: [opportunity_core, stage_customization]
 
-  # TODO: Set your Salesforce domain (i.e. https:// _____________ .com ) This will be used to link out to SFDC objects.
+  # Customize: Set your Salesforce domain (i.e. https:// _____________ .com ) This will be used to link out to SFDC objects.
     dimension: salesforce_domain_config {
     sql: looker.my.salesforce.com;;
     hidden: yes
