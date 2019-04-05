@@ -1,4 +1,5 @@
 include: "//app-sales/lead_core.view.lkml"
+include: "//app-sales-adapter/lead_adapter.view.lkml"
 
 # Customize: Change the schema or table name.
 view: lead_schema {
@@ -15,8 +16,11 @@ view: lead {
   dimension: salesforce_domain_config {
     sql: looker.my.salesforce.com;;
   }
+
+  # Customize: This field is a filter for leads that would be considered ‘Active’.
+  #       This can be a filter on their duration as leads or any arbitrary factors. Default is 1=1 (no filter)
   dimension: is_active_lead {
     type: yesno
-    sql: 1=1  ;;
+    sql: ${status} NOT IN ('Unsubscribed','Disqualified') ;;
   }
 }

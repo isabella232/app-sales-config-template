@@ -3,13 +3,14 @@ include: "//app-sales/quota_core.view.lkml"
 ############################################################################################################################
 ### TODO: Set up the Quotas view.  There are several ways to set up the quota view. The important thing is that Looker   ###
 ###       can find a view called quota that has a row for every Sales Rep with a name for joining, ae_segment            ###
-###       for grouping, a yearly quota_number for each user and the aggregate quota dimension.                           ###
+###       for grouping, a yearly quota_number for each user and the aggregate quota dimension (can be filled in at       ###
+###       the dimension level).                                                                                          ###
 ############################################################################################################################
 
 ############################################################################################################################
 ### Below is one potential way to structure the quota table. Quota map is a mapping between usernames and ae_segments    ###
 ### and quota_numbers is a mapping between ae_segments to quota_amounts. The quota view joins these two tables to create ###
-###  the quota table that is ultimately joined into the model.                                                           ###
+### the quota table that is ultimately joined into the model.                                                            ###
 ############################################################################################################################
 
 view: quota_map {
