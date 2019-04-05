@@ -7,7 +7,7 @@ remote_dependency: app-sales-adapter  {
 
 remote_dependency: app-sales {
   url: "https://github.com/looker/app-sales/"
-  ref: "1f398c15a30e6914cc0633c48d297f34e4ebae2c"
+  ref: "e09807318541e49def68ee551041649a093025e1"
 }
 
 
