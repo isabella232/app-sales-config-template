@@ -19,8 +19,8 @@ view: lead {
 
   # Customize: This field is a filter for leads that would be considered ‘Active’.
   #       This can be a filter on their duration as leads or any arbitrary factors. Default is 1=1 (no filter)
-  dimension: is_active_lead {
-    type: yesno
-    sql: ${status} NOT IN ('Unsubscribed','Disqualified') ;;
-  }
+#   dimension: is_active_lead {
+#     type: yesno
+#     sql: ${status} NOT IN ('Unsubscribed','Disqualified') ;;
+#   }
 }
