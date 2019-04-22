@@ -19,22 +19,22 @@ view: account {
 
   # TODO: Define your business segments at the account level here. This can be grouped based on things like company size
   #        or any other segmentation you'd want to break down accounts by.
-  dimension: business_segment {
-    type: string
-    case: {
-      when: {
-        sql: ${number_of_employees} IN ('Under 50', '51 - 200', '201 - 500') ;;
-        label: "Small Business"
-      }
-      when: {
-        sql: ${number_of_employees} IN ('501 - 1000') ;;
-        label: "Mid-Market"
-      }
-      when: {
-        sql: ${number_of_employees} IN ('1001 - 3000', '3001 - 5000', '5001 - 10000', '10001+') ;;
-        label: "Enterprise"
-      }
-      else: "Unknown"
-    }
-  }
+#   dimension: business_segment {
+#     type: string
+#     case: {
+#       when: {
+#         sql: ${number_of_employees} IN ('Under 50', '51 - 200', '201 - 500') ;;
+#         label: "Small Business"
+#       }
+#       when: {
+#         sql: ${number_of_employees} IN ('501 - 1000') ;;
+#         label: "Mid-Market"
+#       }
+#       when: {
+#         sql: ${number_of_employees} IN ('1001 - 3000', '3001 - 5000', '5001 - 10000', '10001+') ;;
+#         label: "Enterprise"
+#       }
+#       else: "Unknown"
+#     }
+#   }
  }
