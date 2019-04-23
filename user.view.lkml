@@ -34,6 +34,6 @@ view: user {
   # TODO: This field will be used to divide your users/sales reps up by region
   dimension: ae_region {
     type: string
-    sql: 'Default Region' ;;
+    sql: 'Configure AE Region' ;;
   }
 }
