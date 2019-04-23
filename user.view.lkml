@@ -30,4 +30,10 @@ view: user {
   dimension: salesforce_domain_config {
     sql: looker.my.salesforce.com;;
   }
+
+  # TODO: This field will be used to divide your users/sales reps up by region
+  dimension: ae_region {
+    type: string
+    sql: 'Default Region' ;;
+  }
 }
