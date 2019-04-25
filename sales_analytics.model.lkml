@@ -18,6 +18,7 @@ datagroup: sales_analytics_etl {
 
 
 ## CUSTOMIZE - Set fiscal month offset to how many months after January to start the fiscal year.
+## NOTE - This parameter must match the sql: parameter of the opportunity.fiscal_month_offset dimension
 # fiscal_month_offset: 0
 
 named_value_format: custom_amount_value_format {

@@ -30,6 +30,12 @@ view: opportunity {
     hidden: yes
     }
 
+  # TODO: Make sure this dimension's sql parameter matches the value of your `fiscal_month_offset:` parameter in the model file
+    dimension: fiscal_month_offset {
+      sql: 0 ;;
+      hidden: yes
+    }
+
   #TODO: is_pipeline will determine in which stages an opportunity is considered pipeline
     dimension: is_pipeline {
     type: yesno
