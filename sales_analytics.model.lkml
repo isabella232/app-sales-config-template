@@ -1,4 +1,4 @@
-connection: "app-salesforce"
+connection: "looker_app"
 
 include: "*.view"
 include: "//app-sales-adapter/*.view"
