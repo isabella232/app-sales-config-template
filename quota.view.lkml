@@ -62,7 +62,18 @@ view: quota {
     value_format_name: custom_amount_value_format
   }
 
-
+  # TODO: Set hardcoded quotas for managers with this field.
+  dimension: manager_quota {
+    type: number
+    sql:
+    CASE WHEN ${manager.name} = 'Manager 1' THEN 100000
+         WHEN ${manager.name} = 'Manager 2' THEN 200000
+         WHEN ${manager.name} = 'Manager 3' THEN 300000
+         ELSE NULL
+         END
+    ;;
+    value_format_name: custom_amount_value_format
+  }
 
   ## Customize - This field corrects for users that were created as SFDC users before they were Sales Reps.
   ## This is used for comparing the reps first 18 months against each other.
