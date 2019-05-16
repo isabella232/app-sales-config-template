@@ -62,7 +62,7 @@ view: quota {
     value_format_name: custom_amount_value_format
   }
 
-  # TODO: Set hardcoded quotas for managers with this field.
+  # TODO: Set hardcoded quarterly quotas for managers with this field.
   dimension: manager_quota {
     type: number
     sql:
