@@ -107,3 +107,31 @@ view: quota {
 #  }
 
 }
+
+############################################################################################################################
+### TODO: Set up the Aggregate Quota view. This view will contain historical aggregate goals for your entire             ###
+### organization. Structurally, this view should be defined similarly to the standard Quota view (i.e. multiple SELECT   ###
+### statements, each corresponding to the current or a previous quarter).                                                ###
+############################################################################################################################
+
+view: aggregate_quota {
+  extends: [aggregate_quota_core]
+  derived_table: {
+    sql:
+    SELECT '2018-01-01' as quota_start_date, 10211100 as aggregate_quota
+    UNION ALL
+    SELECT '2018-04-01' as quota_start_date, 11948700 as aggregate_quota
+    UNION ALL
+    SELECT '2018-07-01' as quota_start_date, 13233800 as aggregate_quota
+    UNION ALL
+    SELECT '2018-10-01' as quota_start_date, 14251400 as aggregate_quota
+    UNION ALL
+    SELECT '2019-01-01' as quota_start_date, 16800000 as aggregate_quota
+    UNION ALL
+    SELECT '2019-04-01' as quota_start_date, 18000000 as aggregate_quota;;
+  }
+
+  dimension: aggregate_quota {
+    sql: ${TABLE}.aggregate_quota ;;
+  }
+}
