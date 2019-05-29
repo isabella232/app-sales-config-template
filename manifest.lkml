@@ -10,10 +10,10 @@ remote_dependency: app-sales {
   ref: "e09807318541e49def68ee551041649a093025e1"
 }
 
-# application: sales-app {
-#   label: "Sales Analytics"
-#   definition_file: "app-sales//application.json"
-# }
+application: sales-analytics-application {
+  label: "Sales Analytics (Template)"
+  definition_file: "app-sales//application.json"
+}
 
 # local_dependency: {project: "app-sales"}
 # local_dependency: {project: "app-sales-adapter"}
