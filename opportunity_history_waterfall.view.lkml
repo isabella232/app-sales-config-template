@@ -7,6 +7,6 @@ view: opportunity_history_waterfall {
 
   # TODO: Set which column you'd like to use for your "Amount" calculations (examples include ACV, ARV, MRR)
   dimension: amount_config {
-    sql: acv_2_0_c;;
+    sql: amount;;
   }
  }
