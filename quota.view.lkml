@@ -1,66 +1,37 @@
 include: "//app-sales/quota_core.view.lkml"
 
 ############################################################################################################################
-### TODO: Set up the Quotas view.  There are several ways to set up the quota view. The important thing is that Looker   ###
-###       can find a view called quota that has a row for every Sales Rep with a name for joining, ae_segment            ###
-###       for grouping, a yearly quota_number for each user and the aggregate quota dimension (can be filled in at       ###
-###       the dimension level).                                                                                          ###
+### TODO: Set up the Quotas view.  There are many ways to set up the quota view. The important thing is that Looker      ###
+###       can find a view called quota that has a row for every Sales Rep for each quarter, going back 4 quarters.       ###
+###       The columns needed will be a name for joining, ae_segment for grouping, a quota_amount for each user/qtr       ###
+###       and quota_start_date which will be the first date the quota is for, in YYYY-MM-DD form                         ###
 ############################################################################################################################
 
-############################################################################################################################
-### Below is one potential way to structure the quota table. Quota map is a mapping between usernames and ae_segments    ###
-### and quota_numbers is a mapping between ae_segments to quota_amounts. The quota view joins these two tables to create ###
-### the quota table that is ultimately joined into the model.                                                            ###
-############################################################################################################################
-
-view: quota_map {
-  derived_table: {
-    sql:
-      SELECT 'Zacherie Clausen' as name, 'Inside Sales 1' as ae_segment
-      UNION ALL
-      SELECT 'Tiffani Helstrom' as name, 'Inside Sales 2' as ae_segment
-      UNION ALL
-      SELECT 'Gwendolyn Maris' as name, 'Outside Sales 1' as ae_segment
-      UNION ALL
-      SELECT 'Reine Duckerin' as name, 'Outside Sales 2' as ae_segment
-    ;;
-  }
-}
-
-view: quota_numbers {
-  derived_table: {
-    sql:
-      SELECT 'Inside Sales' as ae_seg, 200000 as quota_amount
-      UNION ALL
-      SELECT 'Outside Sales' as ae_seg, 500000 as quota_amount
-    ;;
-  }
-}
 
 
 view: quota {
   extends: [quota_core]
   derived_table: {
     sql:
-      SELECT *
-      FROM ${quota_map.SQL_TABLE_NAME}
-      LEFT JOIN ${quota_numbers.SQL_TABLE_NAME} ON quota_map.ae_segment = quota_numbers.ae_seg
-    ;;
+    SELECT 'Zacherie Clausen' as name, 'Inside AE' as ae_segment, 10000 as quota_amount, '2018-04-01' as quota_start_date
+    UNION ALL
+    SELECT 'Zacherie Clausen' as name, 'Inside AE' as ae_segment, 12000 as quota_amount, '2018-07-01' as quota_start_date
+    UNION ALL
+    SELECT 'Zacherie Clausen' as name, 'Inside AE' as ae_segment, 10000 as quota_amount, '2018-10-01' as quota_start_date
+    UNION ALL
+    SELECT 'Zacherie Clausen' as name, 'Inside AE' as ae_segment, 12000 as quota_amount, '2019-01-01' as quota_start_date
+    UNION ALL
+    SELECT 'Tiffani Helstrom' as name, 'Enterprise AE' as ae_segment, 20000 as quota_amount, '2019-01-01' as quota_start_date
+    UNION ALL
+    SELECT 'Tiffani Helstrom' as name, 'Enterprise AE' as ae_segment, 32000 as quota_amount, '2019-04-01' as quota_start_date
+    UNION ALL
+    SELECT 'Tiffani Helstrom' as name, 'Enterprise AE' as ae_segment, 20000 as quota_amount, '2019-01-01' as quota_start_date
+    UNION ALL
+    SELECT 'Tiffani Helstrom' as name, 'Enterprise AE' as ae_segment, 32000 as quota_amount, '2019-01-01' as quota_start_date
+
   }
 
 
-
-  ##########################################################################################################
-  ### TODO: Aggregate Quotas are defined with a hardcoded value and are independent of the quotas table. ###
-  ##########################################################################################################
-
-  # TODO: The aggregate quota for the entire org should be defined here. This should be a yearly number.
-  dimension: aggregate_quota {
-    type: number
-    sql: 1000000 ;;
-    hidden: yes
-    value_format_name: custom_amount_value_format
-  }
 
   # TODO: Set hardcoded quarterly quotas for managers with this field.
   dimension: manager_quota {
@@ -107,6 +78,8 @@ view: quota {
 #  }
 
 }
+
+
 
 ############################################################################################################################
 ### TODO: Set up the Aggregate Quota view. This view will contain historical aggregate goals for your entire             ###
