@@ -19,7 +19,7 @@ view: account {
 
   # Customize: Set the logic that will mark an account as either a customer account or a non-customer account
   dimension: is_customer {
-    sql: ${type} LIKE 'Customer%' ;;
+    sql: ${opportunity.stage_name} = 'Closed Won' ;;
   }
 
   # Customize: Define your business segments at the account level here. This can be grouped based on things like company size
