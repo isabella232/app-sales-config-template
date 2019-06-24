@@ -1,5 +1,6 @@
 include: "//app-sales/account_core.view.lkml"
 include: "//app-sales-adapter/account_adapter.view.lkml"
+include: "//app-sales/account_facts.view.lkml"
 
 # Customize: Change the schema or table name.
 view: account_schema {
@@ -43,3 +44,7 @@ view: account {
     }
   }
  }
+ 
+ view: account_facts_is_customer {
+  extends: [account_facts_is_customer_core]
+}
