@@ -28,7 +28,7 @@ view: quota {
     SELECT 'Tiffani Helstrom' as name, 'Enterprise AE' as ae_segment, 20000 as quota_amount, '2019-01-01' as quota_start_date
     UNION ALL
     SELECT 'Tiffani Helstrom' as name, 'Enterprise AE' as ae_segment, 32000 as quota_amount, '2019-01-01' as quota_start_date
-
+    ;;
   }
 
 
