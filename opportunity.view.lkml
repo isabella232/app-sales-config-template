@@ -21,9 +21,7 @@ view: opportunity {
 
   #TODO: This should refer to the column on the opportunity record that represents  the value of the opportunity. 
   # This can be ACV, Amount, revenue etc
-  # Its possible to use other tables to configure this field, including Opportunity Line Item. See this repository for a workaround
-  # 
-  # 
+  # Its possible to use other tables to configure this field, including Opportunity Line Item. Reach out to a Looker Analyst for this workaround. 
     dimension: amount_config {
     sql: amount ;;
     }
