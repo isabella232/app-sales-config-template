@@ -19,12 +19,17 @@ view: opportunity {
     hidden: yes
     }
 
-  #TODO: This should refer to the database column that salespeople are measured against. This can be ACV, Amount, revenue etc
+  #TODO: This should refer to the column on the opportunity record that represents  the value of the opportunity. 
+  # This can be ACV, Amount, revenue etc
+  # Its possible to use other tables to configure this field, including Opportunity Line Item. See this repository for a workaround
+  # 
+  # 
     dimension: amount_config {
     sql: amount ;;
     }
 
   #TODO: Amount name will be how the measures built with amount_config will appear in the label of the field. The display name.
+  # for example, if this field had sql: ACV;; then there would be measures like Total ACV, Average AVC.
     dimension: amount_display {
     sql:  Amount ;;
     hidden: yes
@@ -36,7 +41,8 @@ view: opportunity {
       hidden: yes
     }
 
-  #TODO: is_pipeline will determine in which stages an opportunity is considered pipeline
+  #TODO: is_pipeline will determine in which stages an opportunity is considered pipeline. Is pipeline is generally considered
+  # all open opps that are being actively worked.
     dimension: is_pipeline {
     type: yesno
     sql: ${forecast_category} in ('Pipeline','Upside','BestCase') AND ${stage_name} <> 'Closed Lost' ;;
