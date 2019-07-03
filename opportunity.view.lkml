@@ -43,7 +43,14 @@ view: opportunity {
     group_label: "Status"
     }
 
-  #TODO: is_included_in_quota will determine which opportunities count towards quota calculations.
+  #TODO: This field determines which opportunities should be included in the app. 
+  #      This is the filter that defines 'Total Amount' and should include all Opportunities 
+  #      you'd want to see aggregated at the top level. This would include New Business, Renewals, 
+  #      Upsells and any other Opportunities that would be counted towards your Aggregate Quota.
+
+  #      Usually this would be based on the opportunity type field: 
+  #      e.g. ${type} IN ('New Business','New Customer','Marketplace','Amendment','Resell','Addon/Upsell') ;;
+
     dimension: is_included_in_quota {
     type: yesno
     sql: ${type} IN ('New Business','New Customer','Marketplace','Amendment','Resell','Addon/Upsell') ;;
