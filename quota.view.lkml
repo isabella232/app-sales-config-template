@@ -34,7 +34,10 @@ view: quota {
 
 
 
-  # TODO: Set hardcoded quarterly quotas for managers with this field.
+  # Customize: By default manager_quota is populated from the manager_quota derived table.
+  # The manager_quota derived table aggregates the individual quota values declared in the app-sales-config/quota table.
+  # If a manager's quota is not the sum of that manager's rep's quotas, then this case when statement can be used to
+  # hardcode manager's quotas.
   dimension: manager_quota {
     type: number
     sql: ${manager_quota.total_quota} ;;
