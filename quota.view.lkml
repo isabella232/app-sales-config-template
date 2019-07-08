@@ -1,4 +1,5 @@
 include: "//app-sales/quota_core.view.lkml"
+include: "//app-sales/manager_quota_core.view.lkml"
 
 ############################################################################################################################
 ### TODO: Set up the Quotas view.  There are many ways to set up the quota view. The important thing is that Looker      ###
@@ -36,13 +37,14 @@ view: quota {
   # TODO: Set hardcoded quarterly quotas for managers with this field.
   dimension: manager_quota {
     type: number
-    sql:
-    CASE WHEN ${manager.name} = 'Manager 1' THEN 100000
-         WHEN ${manager.name} = 'Manager 2' THEN 200000
-         WHEN ${manager.name} = 'Manager 3' THEN 300000
-         ELSE NULL
-         END
-    ;;
+    sql: ${manager_quota.total_quota} ;;
+#     sql:
+#     CASE WHEN ${manager.name} = 'Manager 1' THEN 100000
+#          WHEN ${manager.name} = 'Manager 2' THEN 200000
+#          WHEN ${manager.name} = 'Manager 3' THEN 300000
+#          ELSE NULL
+#          END
+#     ;;
     value_format_name: custom_amount_value_format
   }
 
@@ -107,4 +109,8 @@ view: aggregate_quota {
   dimension: aggregate_quota {
     sql: ${TABLE}.aggregate_quota ;;
   }
+}
+
+view: manager_quota {
+  extends: [manager_quota_core]
 }
