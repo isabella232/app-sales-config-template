@@ -2,12 +2,12 @@ project_name: "app-sales-config"
 
 remote_dependency: app-sales-adapter  {
   url: "https://github.com/looker/app-sales-fivetran-bigquery"
-  ref: "b09c89c429d33faecd5aaa5acd05cb91ce1c3070"
+  ref: "ce34e98e4c3d0dc32111cfba7836f1d28b0187b8"
 }
 
 remote_dependency: app-sales {
   url: "https://github.com/looker/app-sales/"
-  ref: "e09807318541e49def68ee551041649a093025e1"
+  ref: "eccaff89662da5ac0763b629145578673b459d80"
 }
 
 application: sales-analytics-application {
